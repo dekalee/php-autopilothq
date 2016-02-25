@@ -4,7 +4,7 @@
     "description": "PHP wrapper for interacting with the AutopilotHQ API.",
     "homepage": "https://github.com/finicprint/php-autopilothq",
     "keywords": ["picr", "autopilothq", "autopilot"],
-    "version": "0.0.9",
+    "version": "0.1.0",
     "license": "MIT",
     "authors": [
         {
