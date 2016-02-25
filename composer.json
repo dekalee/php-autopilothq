@@ -1,0 +1,30 @@
+{
+    "name": "picr/php-autopilothq",
+    "type": "library",
+    "description": "PHP wrapper for interacting with the AutopilotHQ API.",
+    "homepage": "https://github.com/finicprint/php-autopilothq",
+    "keywords": ["picr", "autopilothq", "autopilot"],
+    "version": "0.0.9",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "John O",
+            "email": "ruskiyos@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "guzzlehttp/guzzle": "~6.0",
+        "vlucas/phpdotenv": "~1.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "~2.1.",
+        "codeception/aspect-mock": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Autopilot\\": "src/",
+            "Tests\\": "tests/"
+        }
+    }
+}
