@@ -15,10 +15,10 @@
     "require": {
         "php": ">=5.5.9",
         "guzzlehttp/guzzle": "~6.0",
-        "vlucas/phpdotenv": "~1.0"
+        "vlucas/phpdotenv": "~2.2"
     },
     "require-dev": {
-        "codeception/codeception": "~2.1.",
+        "codeception/codeception": "~2.1",
         "codeception/aspect-mock": "dev-master"
     },
     "autoload": {
