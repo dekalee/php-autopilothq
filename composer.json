@@ -14,12 +14,15 @@
     ],
     "require": {
         "php": ">=5.5.9",
-        "guzzlehttp/guzzle": "~6.0",
-        "vlucas/phpdotenv": "~2.2"
+        "guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
         "codeception/codeception": "~2.1",
-        "codeception/aspect-mock": "dev-master"
+        "codeception/aspect-mock": "dev-master",
+        "vlucas/phpdotenv": "~2.2"
+    },
+    "suggest": {
+        "vlucas/phpdotenv": "Allows secrets to be loaded from .env files."
     },
     "autoload": {
         "psr-4": {

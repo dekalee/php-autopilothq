@@ -30,18 +30,19 @@ class AutopilotManager
 
     /**
      * AutopilotManager constructor.
+     *
+     * @param string $apiKey
+     *   Autopilot secret key.
+     * @param string $apiHost
+     *   Autopilot host URI.
      */
-    public function __construct()
+    public function __construct($apiKey, $apiHost = null)
     {
-        // load required apikey from config
-        $this->apiKey = getenv('AUTOPILOT_SECRET');
-        if ($this->apiKey === null) {
-            throw AutopilotException::missingApiKey();
-        }
+        $this->apiKey = $apiKey;
 
         // instantiate client
         $this->client = new Client([
-            'base_uri' => getenv('AUTOPILOT_HOST') ?: 'https://api2.autopilothq.com/v1/',
+            'base_uri' => $apiHost ?: 'https://api2.autopilothq.com/v1/',
         ]);
     }
 

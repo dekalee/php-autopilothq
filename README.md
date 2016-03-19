@@ -8,20 +8,13 @@ A php library for interacting with AutopilotHQ API http://docs.autopilot.apiary.
 $ composer require picr/php-autopilothq
 ```
 
-Create an `.env` file
-```env
-AUTOPILOT_SECRET=your-secret-key
-```
-
 ## Usage
 ---
 All interaction occurs in the `AutopilotManager` class.
 
 ### initialize manager
 ```php
-// NOTE: AUTOPILOT_SECRET must be defined in .env file
-// NOTE: if AUTOPILOT_HOST is not defined in .env file, will use 'https://api2.autopilothq.com/v1/'
-$manager = new AutopilotManager();
+$manager = new AutopilotManager($apiKey);
 ```
 
 ### getContact
