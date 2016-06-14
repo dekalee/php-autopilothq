@@ -404,6 +404,73 @@ class AutopilotManager
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    // REST hooks methods
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    /**
+     * Get all REST hooks
+     *
+     * @return array
+     *
+     * @throws AutopilotException
+     */
+    public function allRestHooks()
+    {
+        $response = $this->apiGet('hooks');
+
+        return $response['hooks'];
+    }
+
+    /**
+     * Deletes all REST hooks
+     *
+     * @return boolean
+     *
+     * @throws AutopilotException
+     */
+    public function deleteAllRestHooks()
+    {
+        $this->apiDelete('hooks');
+
+        return true;
+    }
+
+    /**
+     * Add REST hook
+     * 
+     * @param string $event
+     * @param string $targetUrl
+     *
+     * @return string Returns hook ID
+     *
+     * @throws AutopilotException
+     */
+    public function addRestHook($event, $targetUrl)
+    {
+        $request = ['event' => $event, 'target_url' => $targetUrl];
+
+        $response = $this->apiPost('hook', $request);
+
+        return $response['hook_id'];
+    }
+
+    /**
+     * Deletes a single REST hook
+     *
+     * @param string $hookId
+     *
+     * @return bool
+     * 
+     * @throws AutopilotException
+     */
+    public function deleteRestHook($hookId) 
+    {
+        $this->apiDelete('hook/' . $hookId);
+
+        return true;
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // REQUEST helpers
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

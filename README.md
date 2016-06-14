@@ -103,6 +103,26 @@ $manager->allTriggers();
 $manager->addContactToJourney($journey, $id|$email);
 ```
 
+### allRestHooks
+```php
+$manager->allRestHooks();
+```
+
+### deleteAllRestHooks
+```php
+$manager->deleteAllRestHooks();
+```
+
+### addRestHook
+```php
+$manager->addRestHook($event, $targetUrl);
+```
+
+### deleteRestHook
+```php
+$manager->deleteRestHook($hookId);
+```
+
 ## AutopilotContact
 ---
 ### get value
