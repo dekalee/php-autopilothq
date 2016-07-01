@@ -228,6 +228,12 @@ class AutopilotField
             throw AutopilotException::invalidAutopilotType($type);
         }
 
+        // Try to convert value into the required type 
+        if ($this->getType() !== $type && $this->canConvert($type)) {
+            $value = $this->convert($value, $type);
+            $type = $this->getType();
+        }
+
         // type of field is set in the constructor
         if ($this->getType() !== $type) {
             throw AutopilotException::typeMismatch($this->getType(), $type);
@@ -357,6 +363,42 @@ class AutopilotField
         return str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $value)));
     }
 
+    /**
+     * Returns true if we're able to convert the value from the given type
+     *
+     * @param string $fromType
+     *
+     * @return bool
+     */
+    protected function canConvert($fromType)
+    {
+        $toType = $this->getType();
+
+        if ($fromType === 'integer' && $toType === 'float') {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Converts the type of the given value into the value required for this field
+     *
+     * @param mixed $value
+     * @param string $fromType
+     *
+     * @return mixed Returns the converted value if possible, otherwise returns the original value
+     */
+    protected function convert($value, $fromType)
+    {
+        $toType = $this->getType();
+
+        if ($fromType === 'integer' && $toType === 'float') {
+            return floatval($value);
+        }
+
+        return $value;
+    }
 }
 
 
