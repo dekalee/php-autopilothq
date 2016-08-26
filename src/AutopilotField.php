@@ -53,6 +53,7 @@ class AutopilotField
         'integer',
         'NULL',
         'string',
+        'array',
     ];
 
     /**
@@ -312,17 +313,21 @@ class AutopilotField
             return 'float';
         }
 
+        $skipRegex = false;
+
         // regex below throws up when value is an object or array
         if ($type === 'object' || $type === 'array') {
-            throw new Exception('type "' . $type . '" is not a valid autopilot data type');
+            $skipRegex = true;
         }
 
-        // datetime string
-        $matches = [];
-        $pattern = '/(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(\s|\+\d{4}|\+\d{2}:\d{2}|Z)?/';
-        preg_match($pattern, $value, $matches);
-        if (sizeof($matches) > 0) {
-            return 'date';
+        if (!$skipRegex) {
+            // datetime string
+            $matches = [];
+            $pattern = '/(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(\s|\+\d{4}|\+\d{2}:\d{2}|Z)?/';
+            preg_match($pattern, $value, $matches);
+            if (sizeof($matches) > 0) {
+                return 'date';
+            }
         }
 
         $this->checkType($type);
@@ -333,7 +338,7 @@ class AutopilotField
     protected function checkType($type)
     {
         if (! in_array($type, self::$allowedTypes)) {
-            throw new Exception('type "' . $type . '" is not a valid autopilot data type');
+            throw new AutopilotException('type "' . $type . '" is not a valid autopilot data type');
         }
 
         return true;
