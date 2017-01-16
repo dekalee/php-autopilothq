@@ -398,7 +398,7 @@ class AutopilotManager
 
     public function addContactToJourney($name, $contactId)
     {
-        $response = $this->apiPost('triggers/' . $name . '/contact/' . $contactId);
+        $response = $this->apiPost('trigger/' . $name . '/contact/' . $contactId);
 
         return $response;
     }
