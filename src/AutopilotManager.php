@@ -36,12 +36,12 @@ class AutopilotManager
      * @param string $apiHost
      *   Autopilot host URI.
      */
-    public function __construct($apiKey, $apiHost = null)
+    public function __construct($apiKey, $apiHost = null, Client $client = null)
     {
         $this->apiKey = $apiKey;
 
         // instantiate client
-        $this->client = new Client([
+        $this->client = (null !== $client)? $client: new Client([
             'base_uri' => $apiHost ?: 'https://api2.autopilothq.com/v1/',
         ]);
     }
