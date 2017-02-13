@@ -19,7 +19,8 @@
     "require-dev": {
         "codeception/codeception": "~2.1",
         "codeception/aspect-mock": "dev-master",
-        "vlucas/phpdotenv": "~2.2"
+        "phpunit/phpunit": "~5.7",
+        "phake/phake": "~2.3"
     },
     "suggest": {
         "vlucas/phpdotenv": "Allows secrets to be loaded from .env files."
