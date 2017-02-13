@@ -53,6 +53,7 @@ class AutopilotField
         'integer',
         'NULL',
         'string',
+        'array',
     ];
 
     /**
@@ -228,6 +229,12 @@ class AutopilotField
             throw AutopilotException::invalidAutopilotType($type);
         }
 
+        // Try to convert value into the required type 
+        if ($this->getType() !== $type && $this->canConvert($type)) {
+            $value = $this->convert($value, $type);
+            $type = $this->getType();
+        }
+
         // type of field is set in the constructor
         if ($this->getType() !== $type) {
             throw AutopilotException::typeMismatch($this->getType(), $type);
@@ -306,17 +313,21 @@ class AutopilotField
             return 'float';
         }
 
+        $skipRegex = false;
+
         // regex below throws up when value is an object or array
         if ($type === 'object' || $type === 'array') {
-            throw new Exception('type "' . $type . '" is not a valid autopilot data type');
+            $skipRegex = true;
         }
 
-        // datetime string
-        $matches = [];
-        $pattern = '/(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(\s|\+\d{4}|\+\d{2}:\d{2}|Z)?/';
-        preg_match($pattern, $value, $matches);
-        if (sizeof($matches) > 0) {
-            return 'date';
+        if (!$skipRegex) {
+            // datetime string
+            $matches = [];
+            $pattern = '/(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(\s|\+\d{4}|\+\d{2}:\d{2}|Z)?/';
+            preg_match($pattern, $value, $matches);
+            if (sizeof($matches) > 0) {
+                return 'date';
+            }
         }
 
         $this->checkType($type);
@@ -327,7 +338,7 @@ class AutopilotField
     protected function checkType($type)
     {
         if (! in_array($type, self::$allowedTypes)) {
-            throw new Exception('type "' . $type . '" is not a valid autopilot data type');
+            throw new AutopilotException('type "' . $type . '" is not a valid autopilot data type');
         }
 
         return true;
@@ -357,6 +368,42 @@ class AutopilotField
         return str_replace(' ', '', ucwords(str_replace(['-', '_'], ' ', $value)));
     }
 
+    /**
+     * Returns true if we're able to convert the value from the given type
+     *
+     * @param string $fromType
+     *
+     * @return bool
+     */
+    protected function canConvert($fromType)
+    {
+        $toType = $this->getType();
+
+        if ($fromType === 'integer' && $toType === 'float') {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Converts the type of the given value into the value required for this field
+     *
+     * @param mixed $value
+     * @param string $fromType
+     *
+     * @return mixed Returns the converted value if possible, otherwise returns the original value
+     */
+    protected function convert($value, $fromType)
+    {
+        $toType = $this->getType();
+
+        if ($fromType === 'integer' && $toType === 'float') {
+            return floatval($value);
+        }
+
+        return $value;
+    }
 }
 
 
