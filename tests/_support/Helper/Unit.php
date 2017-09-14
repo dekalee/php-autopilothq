@@ -10,10 +10,11 @@ class Unit extends \Codeception\Module
     /**
      * Assert instanceof against an object
      *
-     * @param $class
-     * @param $object
+     * @param        $class
+     * @param        $object
+     * @param string $description
      */
-    public function assertInstanceOf($class, $object)
+    public function assertInstanceOf($class, $object, $description = '')
     {
         if (! is_object($object)) {
             throw new \PHPUnit_Framework_ExpectationFailedException($object . ' is a ' . gettype($object) . ' not an instance of ' . $class);

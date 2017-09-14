@@ -31,7 +31,7 @@ class AutopilotCest
 
     public function __construct()
     {
-        $this->pilot = new AutopilotManager();
+        $this->pilot = new AutopilotManager('key');
 
         $this->exceptions['contactNotFound'] = new AutopilotException('Contact could not be found.', 404);
         $this->exceptions['listNotFound'] = new AutopilotException('List does not exist.', 404);
