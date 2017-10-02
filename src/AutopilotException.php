@@ -233,7 +233,7 @@ class AutopilotException extends Exception
      */
     public static function contactsBulkSaveFailed($message = null)
     {
-        return new static('contacts bulk upload failed' . is_null($message) ? '' : ': ' . $message);
+        return new static('contacts bulk upload failed' . (is_null($message) ? '' : ': ' . $message));
     }
 
     /**
@@ -245,7 +245,7 @@ class AutopilotException extends Exception
      */
     public static function invalidAutopilotType($type = null)
     {
-        return new static(is_null($type) ? 'Invalid data type.' : '"' . $type . '" is not a valid Autopilot data type');
+        return new static((is_null($type) ? 'Invalid data type.' : '"' . $type . '" is not a valid Autopilot data type'));
     }
 
     /**
@@ -258,7 +258,7 @@ class AutopilotException extends Exception
      */
     public static function typeMismatch($expected, $type = null)
     {
-        return new static('Type value mismatch! Expected: ' . $expected . is_null($type) ? '' : ', got: '. $type);
+        return new static('Type value mismatch! Expected: ' . $expected . (is_null($type) ? '' : ', got: '. $type));
     }
 
 }
