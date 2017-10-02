@@ -1,15 +1,18 @@
 {
-    "name": "picr/php-autopilothq",
+    "name": "pzaj2/php-autopilothq",
     "type": "library",
-    "description": "PHP wrapper for interacting with the AutopilotHQ API.",
-    "homepage": "https://github.com/finicprint/php-autopilothq",
-    "keywords": ["picr", "autopilothq", "autopilot"],
-    "version": "0.1.1",
+    "description": "PHP wrapper for interacting with the AutopilotHQ API. Based on picr/php-autopilothq",
+    "homepage": "https://github.com/pzaj2/php-autopilothq",
+    "keywords": ["pzaj2", "autopilothq", "autopilot"],
+    "version": "0.1.2",
     "license": "MIT",
     "authors": [
         {
             "name": "John O",
             "email": "ruskiyos@gmail.com"
+        },
+        {
+            "name": "pzaj2"
         }
     ],
     "require": {
