@@ -200,11 +200,6 @@ class AutopilotContact implements JsonSerializable
 
         /** @var AutopilotField $field */
         foreach($this->fields as $field) {
-            //TODO: how do you "unset" fields with Autopilot? Their API doesn't say anything about it
-            if ($field->getValue() === null) {
-                continue;
-            }
-
             if (! $field->isReserved()) {
                 $result['custom'][$field->formatName()] = $field->getValue();
             } else {

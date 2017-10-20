@@ -163,6 +163,55 @@ class AutopilotContactCest
         $I->assertEquals($expected['contact'], $contact->toRequest($prependKey = false));
     }
 
+    public function testContactFieldsCanBeCleared(UnitTester $I)
+    {
+        $I->wantTo('clear contact fields');
+
+        $values = [
+            'FirstName'               => null,
+            'LastName'                => null,
+            'custom_fields' => [
+                [
+                    'kind'      => 'Age',
+                    'value'     => null,
+                    'fieldType' => 'integer',
+                ],
+                [
+                    'kind'      => 'Birthday',
+                    'value'     => null,
+                    'fieldType' => 'date',
+                ],
+                [
+                    'kind'      => 'Category',
+                    'value'     => null,
+                    'fieldType' => 'string',
+                ],
+                [
+                    'kind'      => 'Completed Status',
+                    'value'     => null,
+                    'fieldType' => 'float',
+                ],
+            ],
+        ];
+
+        $contact = new AutopilotContact($values);
+
+        $expected = [
+            'contact' => [
+                'FirstName' => null,
+                'LastName'  => null,
+                'custom'    => [
+                    'integer--Age'             => null,
+                    'date--Birthday'           => null,
+                    'string--Category'         => null,
+                    'float--Completed--Status' => null,
+                ],
+            ],
+        ];
+        
+        $I->assertEquals($expected, $contact->toRequest());
+    }
+
     public function testContactMagicGettersAndSetters(UnitTester $I)
     {
         $I->wantTo('set and get values using magic methods');
