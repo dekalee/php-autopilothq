@@ -125,11 +125,17 @@ class AutopilotField
             $this->name = self::getFieldName($name);
         }
 
+        $this->isReserved = in_array($this->name, self::$reservedFields);
         $cast = isset($this->casts[$this->name]) ? $this->casts[$this->name] : null;
+
+        // if there are new fields that we do not expect,
+        // mark them as readonly in order to send them unchangeable to autopilot
+        if (!$this->isReserved && !$cast) {
+            $this->casts[$this->name] = 'readonly';
+        }
 
         // since name cannot be changed, determine "readonly" and "reserved" in constructor
         $this->isReadOnly = $cast === 'readonly';
-        $this->isReserved = in_array($this->name, self::$reservedFields);
 
         if (is_null($this->type)) {
             $this->setTypeByValue($type, $value, $cast);
