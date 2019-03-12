@@ -16,6 +16,10 @@ All interaction occurs in the `AutopilotManager` class.
 ```php
 $manager = new AutopilotManager($apiKey);
 ```
+### checkContactExists
+```php
+$manager->checkContactExists($id|$email);
+```
 
 ### getContact
 ```php
