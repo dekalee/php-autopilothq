@@ -66,7 +66,7 @@ class AutopilotManager
                 throw $e; // Preserve stack information
             }
         }
-        return false;
+        return true;
     }
 
     /**
