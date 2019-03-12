@@ -1,5 +1,5 @@
 {
-    "name": "picr/php-autopilothq-rozenlicht",
+    "name": "picr/php-autopilothq",
     "type": "library",
     "description": "PHP wrapper for interacting with the AutopilotHQ API.",
     "homepage": "https://github.com/finicprint/php-autopilothq",
