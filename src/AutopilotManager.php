@@ -53,6 +53,25 @@ class AutopilotManager
     /**
      * @param $id
      *
+     * @return boolean
+     */
+    public function checkContactExists($id)
+    {
+        try {
+            $response = $this->apiGet('contact/' . $id);
+        } catch (AutopilotException $e) {
+            if($e->getCode() == 404){
+                return false; // catch 404 and use it for return value
+            }else{
+                throw $e; // Preserve stack information
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param $id
+     *
      * @return AutopilotContact
      */
     public function getContact($id)
