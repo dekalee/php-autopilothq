@@ -174,6 +174,14 @@ class AutopilotContact implements JsonSerializable
                     $field = new AutopilotField($custom['kind'], $custom['value'], $custom['fieldType']);
                     $this->fields[$field->getName()] = $field;
                 }
+            } elseif ($key === 'custom') {
+                foreach ($value as $name => $value) {
+                    $nameParts = explode('--', $name);
+                    $type = array_shift($nameParts);
+                    $name = implode(' ', $nameParts);
+                    $field = new AutopilotField($name, $value, $type);
+                    $this->fields[$field->getName()] = $field;
+                }
             } elseif ($key === 'lists') {
                 $this->lists = $value;
             } elseif (!is_array($value)) {
