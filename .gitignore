@@ -1,5 +1,4 @@
 /vendor
-composer.lock
 /.idea
 /tests/_support/_generated
 .env
