@@ -6,13 +6,14 @@ use Autopilot\AutopilotContact;
 use Autopilot\AutopilotManager;
 use GuzzleHttp\Client;
 use Phake;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
  * Class AutopilotManagerTest
  */
-class AutopilotManagerTest extends \PHPUnit_Framework_TestCase
+class AutopilotManagerTest extends TestCase
 {
     /**
      * @var AutopilotManager
@@ -24,7 +25,7 @@ class AutopilotManagerTest extends \PHPUnit_Framework_TestCase
     /**
      * Set up the test
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->stream = Phake::mock(StreamInterface::CLASS);
         $response = Phake::mock(ResponseInterface::CLASS);
