@@ -1,6 +1,6 @@
 <?php
 
-namespace Autopilot;
+namespace Autopilot\Exceptions;
 
 use Exception;
 

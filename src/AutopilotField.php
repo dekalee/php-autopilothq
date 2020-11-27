@@ -3,6 +3,7 @@
 namespace Autopilot;
 
 use Exception;
+use Autopilot\Exceptions\AutopilotException;
 
 class AutopilotField
 {

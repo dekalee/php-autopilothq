@@ -4,6 +4,7 @@ namespace Autopilot;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use Autopilot\Exceptions\AutopilotException;
 
 class AutopilotManager
 {
